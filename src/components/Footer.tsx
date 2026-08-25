@@ -17,10 +17,9 @@ import { Language } from '../types';
 interface FooterProps {
   lang: Language;
   onNavigate: (sectionId: string) => void;
-  onOpenDealerModal: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ lang, onNavigate, onOpenDealerModal }) => {
+export const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -95,14 +94,6 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavigate, onOpenDealerMo
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('smart-service')}
-                  className="text-lime-400 font-bold hover:underline flex items-center gap-1"
-                >
-                  <span>{lang === 'ar' ? 'منظومة خدمتك الذكي' : 'Smart Service Hub'}</span>
-                </button>
-              </li>
-              <li>
-                <button
                   onClick={() => onNavigate('products')}
                   className="hover:text-lime-400 transition-colors"
                 >
@@ -135,11 +126,11 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavigate, onOpenDealerMo
               </li>
               <li>
                 <button
-                  onClick={onOpenDealerModal}
-                  className="text-lime-400 font-bold hover:underline flex items-center gap-1"
+                  onClick={() => onNavigate('contact')}
+                  className="text-lime-400 font-bold hover:underline flex items-center gap-1 cursor-pointer"
                 >
-                  <Award className="w-3.5 h-3.5" />
-                  <span>{lang === 'ar' ? 'كن وكيلاً معتمداً' : 'Become a Dealer'}</span>
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>{lang === 'ar' ? 'طلب تسعيرة وتوريد' : 'Request RFQ & Supply'}</span>
                 </button>
               </li>
             </ul>

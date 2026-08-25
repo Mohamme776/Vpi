@@ -90,19 +90,21 @@ export const PartDetailsModal: React.FC<PartDetailsModalProps> = ({
                 {lang === 'ar' ? part.descriptionAr : part.descriptionEn}
               </p>
 
-              {/* Price and Warranty Info Bar */}
+              {/* Factory Status and Warranty Info Bar */}
               <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-slate-400 block">{lang === 'ar' ? 'السعر التقديري للمستهلك' : 'Est. Price'}</span>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-2xl font-black text-lime-400 font-mono">{part.priceEstSAR}</span>
-                    <span className="text-xs text-white font-bold">ر.س / SAR</span>
+                  <span className="text-xs text-slate-400 block">{lang === 'ar' ? 'حالة التوفر بالمصنع' : 'Factory Stock Status'}</span>
+                  <div className="flex items-center gap-2 mt-1">
+                    <CheckCircle2 className="w-4 h-4 text-lime-400" />
+                    <span className="text-sm font-bold text-white">
+                      {part.inStock ? (lang === 'ar' ? 'متوفر للتوريد المباشر' : 'Available for Immediate Supply') : (lang === 'ar' ? 'تصنيع حسب الطلب' : 'Custom Batch Run')}
+                    </span>
                   </div>
                 </div>
 
                 <div className="text-left">
                   <span className="text-xs text-slate-400 block">{lang === 'ar' ? 'فترة الضمان' : 'Warranty'}</span>
-                  <span className="text-sm font-bold text-white bg-lime-500/20 px-2.5 py-1 rounded border border-lime-500/30 inline-block text-lime-300">
+                  <span className="text-sm font-bold text-lime-300 bg-lime-500/20 px-3 py-1 rounded-lg border border-lime-500/30 inline-block">
                     {part.warrantyMonths} شهر مصنعي
                   </span>
                 </div>

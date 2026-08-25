@@ -10,30 +10,24 @@ import { PartFinderWidget } from './components/PartFinderWidget';
 import { PartsCatalogSection } from './components/PartsCatalogSection';
 import { AboutSection } from './components/AboutSection';
 import { StrategicClientsSection } from './components/StrategicClientsSection';
-import { SmartServiceSection } from './components/SmartServiceSection';
-import { DealerSection } from './components/DealerSection';
 import { LocationsSection } from './components/LocationsSection';
 import { CommunitySection } from './components/CommunitySection';
 import { FAQSection } from './components/FAQSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { DealerModal } from './components/DealerModal';
 import { PartDetailsModal } from './components/PartDetailsModal';
 import { SearchModal } from './components/SearchModal';
 import { ArticleModal } from './components/ArticleModal';
-import { SmartAssistantModal } from './components/SmartAssistantModal';
 import { SAMPLE_PARTS } from './data/mockData';
 import { Language, SearchFilterState, VehiclePart, NewsItem } from './types';
-import { MessageCircle, Phone, Award, Sparkles, Bot } from 'lucide-react';
+import { MessageCircle, Phone } from 'lucide-react';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('ar');
   const [activeSection, setActiveSection] = useState<string>('hero');
 
   // Modals state
-  const [isDealerModalOpen, setIsDealerModalOpen] = useState<boolean>(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState<boolean>(false);
-  const [isSmartAssistantOpen, setIsSmartAssistantOpen] = useState<boolean>(false);
   const [selectedPart, setSelectedPart] = useState<VehiclePart | null>(null);
   const [selectedArticle, setSelectedArticle] = useState<NewsItem | null>(null);
 
@@ -143,14 +137,12 @@ export default function App() {
         activeSection={activeSection}
         onNavigate={scrollToSection}
         onOpenSearch={() => setIsSearchModalOpen(true)}
-        onOpenDealerModal={() => setIsDealerModalOpen(true)}
-        onOpenSmartAssistant={() => setIsSmartAssistantOpen(true)}
       />
 
       {/* 2. Hero Banner Section */}
       <HeroSection
         lang={lang}
-        onOpenDealerModal={() => setIsDealerModalOpen(true)}
+        onContactUs={() => scrollToSection('contact')}
         onExploreCatalog={() => scrollToSection('products')}
       />
 
@@ -174,101 +166,56 @@ export default function App() {
         onOpenInquiry={handleOpenInquiry}
       />
 
-      {/* 5. Smart Service Hub & AI Solutions Section ("بوابة خدمتك الذكي") */}
-      <SmartServiceSection
-        lang={lang}
-        onSelectPart={(part) => setSelectedPart(part)}
-        onOpenDealerModal={() => setIsDealerModalOpen(true)}
-        onOpenAssistant={() => setIsSmartAssistantOpen(true)}
-      />
-
-      {/* 6. About VPI Section */}
+      {/* 5. About VPI Section */}
       <AboutSection
         lang={lang}
-        onOpenDealerModal={() => setIsDealerModalOpen(true)}
+        onContactUs={() => scrollToSection('contact')}
       />
 
-      {/* 7. Strategic Clients & Partners Carousel Section ("عملاؤنا الاستراتيجيون") */}
+      {/* 6. Strategic Clients & Partners Section ("عملاؤنا الاستراتيجيون") */}
       <StrategicClientsSection
         lang={lang}
-        onOpenDealerModal={() => setIsDealerModalOpen(true)}
+        onContactUs={() => scrollToSection('contact')}
         onExploreCatalog={() => scrollToSection('products')}
       />
 
-      {/* 8. Become a Dealer Section */}
-      <DealerSection
-        lang={lang}
-        onOpenDealerModal={() => setIsDealerModalOpen(true)}
-      />
-
-      {/* 9. Locations & Factory Network ("تجدنا بالقرب منك") */}
+      {/* 7. Locations & Factory Network ("تجدنا بالقرب منك") */}
       <LocationsSection lang={lang} />
 
-      {/* 10. Community & News Section ("المجتمع") */}
+      {/* 8. Community & News Section ("المجتمع") */}
       <CommunitySection
         lang={lang}
         onReadArticle={(article) => setSelectedArticle(article)}
       />
 
-      {/* 11. FAQ Section ("الأسئلة الشائعة") */}
+      {/* 9. FAQ Section ("الأسئلة الشائعة") */}
       <FAQSection lang={lang} />
 
-      {/* 12. Contact Us & RFQ Form ("الاتصال") */}
+      {/* 10. Contact Us & RFQ Form ("الاتصال") */}
       <ContactSection lang={lang} />
 
-      {/* 13. Corporate Footer */}
+      {/* 11. Corporate Footer */}
       <Footer
         lang={lang}
         onNavigate={scrollToSection}
-        onOpenDealerModal={() => setIsDealerModalOpen(true)}
       />
 
       {/* Floating Action Buttons */}
       <div className="fixed bottom-6 left-6 z-40 flex flex-col items-center gap-3">
-        {/* Smart AI Assistant Floating Button */}
-        <button
-          onClick={() => setIsSmartAssistantOpen(true)}
-          id="floating-smart-assistant-btn"
-          className="relative px-4 py-3 rounded-full bg-gradient-to-r from-lime-500 to-emerald-400 hover:from-lime-400 hover:to-emerald-300 text-slate-950 flex items-center gap-2 shadow-2xl shadow-lime-500/50 transition-all hover:scale-105 active:scale-95 group font-black text-xs sm:text-sm border-2 border-slate-950/20"
-          title="مساعد خدمتك الذكي الفوري"
-        >
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-950 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-slate-950"></span>
-          </span>
-          <Sparkles className="w-4 h-4 fill-current group-hover:rotate-12 transition-transform" />
-          <span>{lang === 'ar' ? 'مساعد خدمتك الذكي' : 'Smart Assistant'}</span>
-        </button>
-
         {/* Quick WhatsApp Float */}
         <a
           href="https://wa.me/966552809632?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%82%D8%B7%D8%B9%20%D8%BA%D9%8A%D8%A7%D8%B1%20VPI"
           target="_blank"
           rel="noreferrer"
           id="floating-whatsapp-btn"
-          className="w-12 h-12 rounded-full bg-slate-900/90 hover:bg-lime-500 text-lime-400 hover:text-slate-950 border border-lime-500/40 flex items-center justify-center shadow-xl transition-all hover:scale-110 active:scale-95 group"
+          className="w-13 h-13 rounded-full bg-lime-500 hover:bg-lime-400 text-slate-950 flex items-center justify-center shadow-2xl shadow-lime-500/40 transition-transform hover:scale-110 active:scale-95 group"
           title="محادثة فورية عبر واتساب (+966 55 280 9632)"
         >
-          <MessageCircle className="w-5 h-5 fill-current" />
+          <MessageCircle className="w-6 h-6 fill-current" />
         </a>
       </div>
 
       {/* Modals */}
-      <SmartAssistantModal
-        isOpen={isSmartAssistantOpen}
-        onClose={() => setIsSmartAssistantOpen(false)}
-        lang={lang}
-        onSelectPart={(part) => setSelectedPart(part)}
-        onOpenDealerModal={() => setIsDealerModalOpen(true)}
-        onNavigateToSection={scrollToSection}
-      />
-
-      <DealerModal
-        isOpen={isDealerModalOpen}
-        onClose={() => setIsDealerModalOpen(false)}
-        lang={lang}
-      />
-
       <PartDetailsModal
         isOpen={!!selectedPart}
         part={selectedPart}

@@ -2,37 +2,57 @@
 
 @keyframes marquee-scroll-left {
   0% {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
   100% {
+    -webkit-transform: translate3d(-50%, 0, 0);
     transform: translate3d(-50%, 0, 0);
   }
 }
 
 @keyframes marquee-scroll-right {
   0% {
+    -webkit-transform: translate3d(-50%, 0, 0);
     transform: translate3d(-50%, 0, 0);
   }
   100% {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-marquee-left {
-  display: flex;
-  width: max-content;
+  display: flex !important;
+  width: max-content !important;
+  min-width: 100%;
   will-change: transform;
-  animation: marquee-scroll-left 40s linear infinite;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  animation: marquee-scroll-left 35s linear infinite;
 }
 
 .animate-marquee-right {
-  display: flex;
-  width: max-content;
+  display: flex !important;
+  width: max-content !important;
+  min-width: 100%;
   will-change: transform;
-  animation: marquee-scroll-right 45s linear infinite;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  animation: marquee-scroll-right 38s linear infinite;
 }
 
 .marquee-container:hover .animate-marquee-left,
 .marquee-container:hover .animate-marquee-right {
   animation-play-state: paused;
 }
+
+@media (max-width: 640px) {
+  .animate-marquee-left {
+    animation-duration: 26s;
+  }
+  .animate-marquee-right {
+    animation-duration: 28s;
+  }
+}
+

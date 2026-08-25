@@ -34,12 +34,11 @@ export const PartsCatalogSection: React.FC<PartsCatalogSectionProps> = ({
   onOpenInquiry,
 }) => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [sortBy, setSortBy] = useState<'recommended' | 'price-asc' | 'price-desc' | 'warranty'>('recommended');
+  const [sortBy, setSortBy] = useState<'recommended' | 'warranty' | 'name'>('recommended');
 
   const sortedParts = [...parts].sort((a, b) => {
-    if (sortBy === 'price-asc') return a.priceEstSAR - b.priceEstSAR;
-    if (sortBy === 'price-desc') return b.priceEstSAR - a.priceEstSAR;
     if (sortBy === 'warranty') return b.warrantyMonths - a.warrantyMonths;
+    if (sortBy === 'name') return a.nameAr.localeCompare(b.nameAr);
     return 0;
   });
 
@@ -80,11 +79,8 @@ export const PartsCatalogSection: React.FC<PartsCatalogSectionProps> = ({
                 <option value="warranty" className="bg-[#0b1a2b] text-white">
                   {lang === 'ar' ? 'الأطول ضماناً' : 'Longest Warranty'}
                 </option>
-                <option value="price-asc" className="bg-[#0b1a2b] text-white">
-                  {lang === 'ar' ? 'السعر: من الأقل للأعلى' : 'Price: Low to High'}
-                </option>
-                <option value="price-desc" className="bg-[#0b1a2b] text-white">
-                  {lang === 'ar' ? 'السعر: من الأعلى للأقل' : 'Price: High to Low'}
+                <option value="name" className="bg-[#0b1a2b] text-white">
+                  {lang === 'ar' ? 'الاسم أبجدياً' : 'Name: A to Z'}
                 </option>
               </select>
             </div>
@@ -191,24 +187,23 @@ export const PartsCatalogSection: React.FC<PartsCatalogSectionProps> = ({
                   </p>
                 </div>
 
-                {/* Card Footer: Price & Action Buttons */}
+                {/* Card Footer: Status & Action Buttons */}
                 <div className="pt-3 border-t border-white/10">
-                  <div className="flex items-baseline justify-between mb-3">
-                    <div>
-                      <span className="text-xs text-slate-400">{lang === 'ar' ? 'السعر المقدر' : 'Est. Price'}</span>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-lg font-black text-white">{part.priceEstSAR}</span>
-                        <span className="text-xs text-lime-400 font-bold">ر.س / SAR</span>
-                      </div>
+                  <div className="flex items-center justify-between mb-3 text-xs">
+                    <div className="flex items-center gap-1.5 text-slate-300">
+                      <ShieldCheck className="w-4 h-4 text-lime-400" />
+                      <span className="font-semibold">{lang === 'ar' ? 'توريد مصنعي معتمد' : 'Factory Certified'}</span>
                     </div>
-                    <span className="text-[10px] text-slate-400">شامل الضريبة والضمان</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-lime-500/10 text-lime-300 border border-lime-500/20 font-bold">
+                      {lang === 'ar' ? 'مطابقة 100%' : '100% Fit'}
+                    </span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       id={`part-details-btn-${part.id}`}
                       onClick={() => onSelectPart(part)}
-                      className="py-2 px-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-100 font-bold text-xs transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                      className="py-2.5 px-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-100 font-bold text-xs transition-colors flex items-center justify-center gap-1 cursor-pointer"
                     >
                       <Eye className="w-3.5 h-3.5 text-lime-400" />
                       <span>{lang === 'ar' ? 'المواصفات' : 'Details'}</span>
@@ -216,7 +211,7 @@ export const PartsCatalogSection: React.FC<PartsCatalogSectionProps> = ({
                     <button
                       id={`part-inquiry-btn-${part.id}`}
                       onClick={() => onOpenInquiry(part)}
-                      className="py-2 px-2.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold text-xs transition-colors flex items-center justify-center gap-1 shadow-sm cursor-pointer"
+                      className="py-2.5 px-2.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold text-xs transition-colors flex items-center justify-center gap-1 shadow-sm cursor-pointer"
                     >
                       <Send className="w-3.5 h-3.5" />
                       <span>{lang === 'ar' ? 'طلب تسعيرة' : 'Inquire'}</span>

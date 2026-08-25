@@ -115,8 +115,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 </div>
 
                 <div className="text-left shrink-0">
-                  <span className="text-sm font-bold text-white font-mono">{part.priceEstSAR} ر.س</span>
-                  <span className="block text-[10px] text-lime-400">{lang === 'ar' ? 'عرض المواصفات' : 'View'}</span>
+                  <span className="text-xs font-bold text-lime-400 bg-lime-500/10 px-2 py-1 rounded border border-lime-500/30 inline-block">
+                    ضمان {part.warrantyMonths} شهر
+                  </span>
+                  <span className="block text-[10px] text-slate-300 mt-1">{lang === 'ar' ? 'عرض المواصفات' : 'View'}</span>
                 </div>
               </div>
             ))

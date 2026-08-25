@@ -15,13 +15,13 @@ import { Language } from '../types';
 
 interface AboutSectionProps {
   lang: Language;
-  onOpenDealerModal: () => void;
+  onContactUs: () => void;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ lang, onOpenDealerModal }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ lang, onContactUs }) => {
   const stats = [
     { number: '+500,000', labelAr: 'قطعة غيار سنوياً', labelEn: 'Parts Produced Annually' },
-    { number: '+45', labelAr: 'وكيل وموزع معتمد', labelEn: 'Authorized Distributors' },
+    { number: '+45', labelAr: 'عميل وموزع معتمد', labelEn: 'Authorized Distributors' },
     { number: '+15', labelAr: 'عاماً من الخبرة الصناعية', labelEn: 'Years Industrial Experience' },
     { number: '99.8%', labelAr: 'دقة المطابقة والجودة', labelEn: 'Quality Pass Rate' },
   ];
@@ -172,10 +172,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang, onOpenDealerMo
 
             <div className="pt-4">
               <button
-                onClick={onOpenDealerModal}
+                onClick={onContactUs}
                 className="px-6 py-3 rounded-xl bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold text-sm shadow-lg shadow-lime-500/20 transition-all cursor-pointer"
               >
-                {lang === 'ar' ? 'طلب شراكة وتوزيع كوكيل' : 'Request Dealer Partnership'}
+                {lang === 'ar' ? 'طلب تسعيرة وتوريد مباشر' : 'Request Direct Supply Quote'}
               </button>
             </div>
           </div>

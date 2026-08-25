@@ -23,8 +23,6 @@ interface NavbarProps {
   activeSection: string;
   onNavigate: (sectionId: string) => void;
   onOpenSearch: () => void;
-  onOpenDealerModal: () => void;
-  onOpenSmartAssistant?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -33,8 +31,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   activeSection,
   onNavigate,
   onOpenSearch,
-  onOpenDealerModal,
-  onOpenSmartAssistant,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,7 +51,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'hero', labelAr: 'الرئيسية', labelEn: 'Home' },
     { id: 'about', labelAr: 'من نحن', labelEn: 'About Us' },
     { id: 'products', labelAr: 'منتجاتنا', labelEn: 'Products & Parts' },
-    { id: 'smart-service', labelAr: 'خدمتك الذكي', labelEn: 'Smart Hub', isSpecial: true },
     { id: 'clients', labelAr: 'عملاؤنا الاستراتيجيون', labelEn: 'Clients' },
     { id: 'community', labelAr: 'المجتمع', labelEn: 'Community' },
     { id: 'locations', labelAr: 'تجدنا بالقرب منك', labelEn: 'Find Us' },
@@ -202,7 +197,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {navLinks.map((item) => {
               const isActive = activeSection === item.id;
-              const isSmart = item.id === 'smart-service';
               return (
                 <button
                   key={item.id}
@@ -211,12 +205,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className={`relative px-3 py-2 text-[14px] xl:text-[15px] font-semibold transition-all duration-200 rounded-lg group flex items-center gap-1.5 ${
                     isActive
                       ? 'text-lime-400 font-bold'
-                      : isSmart
-                      ? 'text-lime-400 hover:text-lime-300 bg-lime-500/10 border border-lime-500/30'
                       : 'text-slate-100 hover:text-lime-300 hover:bg-white/5'
                   }`}
                 >
-                  {isSmart && <Sparkles className="w-3.5 h-3.5 text-lime-400 animate-pulse" />}
                   <span>{lang === 'ar' ? item.labelAr : item.labelEn}</span>
                   {isActive && (
                     <span className="absolute bottom-0 left-3 right-3 h-[3px] bg-lime-400 rounded-full shadow-[0_0_8px_rgba(139,195,74,0.8)]" />
@@ -228,20 +219,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Tools (Language, Search, Dealer CTA) */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Smart AI Assistant Fast Trigger */}
-            {onOpenSmartAssistant && (
-              <button
-                id="header-smart-assistant-btn"
-                onClick={onOpenSmartAssistant}
-                aria-label="Open Smart Assistant"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-lime-500/15 hover:bg-lime-500 hover:text-slate-950 text-lime-400 border border-lime-500/40 text-xs font-bold transition-all shadow-md group"
-                title="تحدث مع مساعد خدمتك الذكي الفوري"
-              >
-                <Sparkles className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform" />
-                <span className="hidden xl:inline">{lang === 'ar' ? 'مساعد خدمتك الذكي' : 'Smart AI'}</span>
-              </button>
-            )}
-
             {/* Search Button */}
             <button
               id="header-search-btn"
@@ -267,14 +244,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>{lang === 'ar' ? 'EN' : 'العربية'}</span>
             </button>
 
-            {/* Become a Dealer Button (Header CTA) */}
+            {/* Request Quote Button (Header CTA) */}
             <button
-              id="header-dealer-cta"
-              onClick={onOpenDealerModal}
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-400 hover:to-lime-500 text-slate-950 font-bold text-sm shadow-lg shadow-lime-500/20 hover:shadow-lime-500/35 transition-all transform active:scale-95"
+              id="header-contact-cta"
+              onClick={() => onNavigate('contact')}
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-400 hover:to-lime-500 text-slate-950 font-bold text-sm shadow-lg shadow-lime-500/20 hover:shadow-lime-500/35 transition-all transform active:scale-95 cursor-pointer"
             >
-              <Award className="w-4 h-4" />
-              <span>{lang === 'ar' ? 'كن وكيلاً' : 'Become a Dealer'}</span>
+              <Phone className="w-4 h-4" />
+              <span>{lang === 'ar' ? 'طلب تسعيرة' : 'Request RFQ'}</span>
             </button>
 
             {/* Mobile Hamburger Toggle */}
@@ -322,15 +299,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
             <button
-              id="mobile-dealer-btn"
+              id="mobile-contact-btn"
               onClick={() => {
-                onOpenDealerModal();
+                onNavigate('contact');
                 setMobileMenuOpen(false);
               }}
-              className="w-full py-3 rounded-xl bg-lime-500 text-slate-950 font-bold text-center text-sm shadow-md flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl bg-lime-500 text-slate-950 font-bold text-center text-sm shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
-              <Award className="w-4 h-4" />
-              <span>{lang === 'ar' ? 'كن وكيلاً معتمداً لـ VPI' : 'Become an Authorized Dealer'}</span>
+              <Phone className="w-4 h-4" />
+              <span>{lang === 'ar' ? 'طلب تسعيرة وتوريد مباشر' : 'Request RFQ & Supply'}</span>
             </button>
             <div className="flex items-center justify-between text-xs text-slate-400 px-2">
               <span className="flex items-center gap-1">

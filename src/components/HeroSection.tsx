@@ -1,17 +1,17 @@
 import React from 'react';
-import { Award, ShieldCheck, Wrench, ChevronLeft, ArrowDown, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Wrench, ChevronLeft, ArrowDown, CheckCircle2, PhoneCall } from 'lucide-react';
 import { Language } from '../types';
 
 interface HeroSectionProps {
   lang: Language;
-  onOpenDealerModal: () => void;
   onExploreCatalog: () => void;
+  onContactUs: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   lang,
-  onOpenDealerModal,
   onExploreCatalog,
+  onContactUs,
 }) => {
   return (
     <section
@@ -62,20 +62,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Exact Sub-headline */}
           <p className="text-base sm:text-xl text-slate-200 font-medium leading-relaxed mb-8 max-w-2xl drop-shadow-md">
             {lang === 'ar'
-              ? 'انضم إلينا كوكيل وقدم حلولاً لسيارات عالية الجودة تميزك في السوق بضمان مصنعي وتوريد مباشر من مصنعنا بالخرج.'
-              : 'Join us as an authorized dealer and deliver premium-grade automotive solutions that give you a competitive edge.'}
+              ? 'حلول وقطع غيار بلاستيكية للمركبات بأعلى معايير الجودة وتطابق الوكالة 100% بضمان مصنعي وتوريد فوري من مصنعنا بالخرج.'
+              : 'Premium-grade automotive plastic parts with 100% OEM fitment, certified warranty, and direct factory supply from our Al-Kharj plant.'}
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap items-center gap-4">
-            {/* Primary 'كن وكيلاً' CTA matching screenshot style */}
+            {/* Primary 'طلب تسعيرة وتوريد' CTA */}
             <button
-              id="hero-dealer-btn"
-              onClick={onOpenDealerModal}
-              className="px-8 py-3.5 rounded-xl border-2 border-white/90 bg-black/40 hover:bg-lime-500 hover:border-lime-500 text-white hover:text-slate-950 font-bold text-base sm:text-lg backdrop-blur-md transition-all duration-300 shadow-xl hover:shadow-lime-500/30 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 group"
+              id="hero-contact-btn"
+              onClick={onContactUs}
+              className="px-8 py-3.5 rounded-xl border-2 border-lime-500 bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold text-base sm:text-lg backdrop-blur-md transition-all duration-300 shadow-xl shadow-lime-500/25 hover:shadow-lime-500/40 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 group cursor-pointer"
             >
-              <Award className="w-5 h-5 text-lime-400 group-hover:text-slate-950 transition-colors" />
-              <span>{lang === 'ar' ? 'كن وكيلاً' : 'Become a Dealer'}</span>
+              <PhoneCall className="w-5 h-5 text-slate-950" />
+              <span>{lang === 'ar' ? 'طلب تسعيرة وتوريد' : 'Request RFQ & Supply'}</span>
               <ChevronLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
             </button>
 
@@ -83,9 +83,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <button
               id="hero-catalog-btn"
               onClick={onExploreCatalog}
-              className="px-6 py-3.5 rounded-xl bg-lime-500/20 hover:bg-lime-500/30 text-lime-300 hover:text-lime-200 border border-lime-400/40 font-bold text-base backdrop-blur-sm transition-all flex items-center gap-2"
+              className="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-white/10 text-white hover:text-lime-300 border border-white/20 hover:border-lime-400/50 font-bold text-base backdrop-blur-sm transition-all flex items-center gap-2 cursor-pointer"
             >
-              <Wrench className="w-4 h-4" />
+              <Wrench className="w-4 h-4 text-lime-400" />
               <span>{lang === 'ar' ? 'كتالوج القطع البلاستيكية' : 'Plastic Parts Catalog'}</span>
             </button>
           </div>
