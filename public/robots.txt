@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://vpi-sa.com/sitemap.xml
+Sitemap: https://vpi-sa.com/sitemap-parts.xml
+
+# Crawl-delay
+Crawl-delay: 1

@@ -1,0 +1,19 @@
+{
+  "name": "شركة أجزاء المركبة للصناعة (VPI)",
+  "short_name": "VPI Auto Parts",
+  "description": "المصنع السعودي الرائد لقطع غيار وهياكل السيارات وأنظمة الفرامل والتبريد وفق معايير ساسو",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07111c",
+  "theme_color": "#0f2b48",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

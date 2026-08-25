@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main Homepage (Arabic Default) -->
+  <url>
+    <loc>https://vpi-sa.com/</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://vpi-sa.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vpi-sa.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vpi-sa.com/" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&amp;fit=crop&amp;w=1600&amp;q=85</image:loc>
+      <image:title>شركة أجزاء المركبة للصناعة VPI - مصنع قطع غيار السيارات السعودي</image:title>
+      <image:caption>مصنع سعودي رائد لقطع غيار وهياكل ومحركات السيارات في الخرج</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Auto Parts Catalog Section -->
+  <url>
+    <loc>https://vpi-sa.com/#products</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://vpi-sa.com/#products" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vpi-sa.com/?lang=en#products" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- About VPI Industrial Plant Section -->
+  <url>
+    <loc>https://vpi-sa.com/#about</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://vpi-sa.com/#about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vpi-sa.com/?lang=en#about" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Become an Authorized Dealer Section -->
+  <url>
+    <loc>https://vpi-sa.com/#dealers</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://vpi-sa.com/#dealers" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vpi-sa.com/?lang=en#dealers" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Factory & Branches Locations Network -->
+  <url>
+    <loc>https://vpi-sa.com/#locations</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://vpi-sa.com/#locations" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vpi-sa.com/?lang=en#locations" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Community, Media & Technical Blog -->
+  <url>
+    <loc>https://vpi-sa.com/#community</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://vpi-sa.com/#community" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vpi-sa.com/?lang=en#community" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Frequently Asked Questions (FAQ) -->
+  <url>
+    <loc>https://vpi-sa.com/#faq</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://vpi-sa.com/#faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vpi-sa.com/?lang=en#faq" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact & Request For Quotation -->
+  <url>
+    <loc>https://vpi-sa.com/#contact</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://vpi-sa.com/#contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vpi-sa.com/?lang=en#contact" />
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>
