@@ -12,6 +12,7 @@ import {
   Award,
   Layers,
   ArrowUpRight,
+  Cpu,
 } from 'lucide-react';
 import { VpiLogo } from './VpiLogo';
 import { Language } from '../types';
@@ -23,6 +24,7 @@ interface NavbarProps {
   onNavigate: (sectionId: string) => void;
   onOpenSearch: () => void;
   onOpenDealerModal: () => void;
+  onOpenSmartAssistant?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -32,6 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onNavigate,
   onOpenSearch,
   onOpenDealerModal,
+  onOpenSmartAssistant,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -52,6 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'hero', labelAr: 'الرئيسية', labelEn: 'Home' },
     { id: 'about', labelAr: 'من نحن', labelEn: 'About Us' },
     { id: 'products', labelAr: 'منتجاتنا', labelEn: 'Products & Parts' },
+    { id: 'smart-service', labelAr: 'خدمتك الذكي', labelEn: 'Smart Hub', isSpecial: true },
     { id: 'clients', labelAr: 'عملاؤنا الاستراتيجيون', labelEn: 'Clients' },
     { id: 'community', labelAr: 'المجتمع', labelEn: 'Community' },
     { id: 'locations', labelAr: 'تجدنا بالقرب منك', labelEn: 'Find Us' },
@@ -198,17 +202,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {navLinks.map((item) => {
               const isActive = activeSection === item.id;
+              const isSmart = item.id === 'smart-service';
               return (
                 <button
                   key={item.id}
                   id={`nav-link-${item.id}`}
                   onClick={() => onNavigate(item.id)}
-                  className={`relative px-3.5 py-2 text-[15px] font-semibold transition-all duration-200 rounded-lg group ${
+                  className={`relative px-3 py-2 text-[14px] xl:text-[15px] font-semibold transition-all duration-200 rounded-lg group flex items-center gap-1.5 ${
                     isActive
                       ? 'text-lime-400 font-bold'
+                      : isSmart
+                      ? 'text-lime-400 hover:text-lime-300 bg-lime-500/10 border border-lime-500/30'
                       : 'text-slate-100 hover:text-lime-300 hover:bg-white/5'
                   }`}
                 >
+                  {isSmart && <Sparkles className="w-3.5 h-3.5 text-lime-400 animate-pulse" />}
                   <span>{lang === 'ar' ? item.labelAr : item.labelEn}</span>
                   {isActive && (
                     <span className="absolute bottom-0 left-3 right-3 h-[3px] bg-lime-400 rounded-full shadow-[0_0_8px_rgba(139,195,74,0.8)]" />
@@ -220,6 +228,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Tools (Language, Search, Dealer CTA) */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* Smart AI Assistant Fast Trigger */}
+            {onOpenSmartAssistant && (
+              <button
+                id="header-smart-assistant-btn"
+                onClick={onOpenSmartAssistant}
+                aria-label="Open Smart Assistant"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-lime-500/15 hover:bg-lime-500 hover:text-slate-950 text-lime-400 border border-lime-500/40 text-xs font-bold transition-all shadow-md group"
+                title="تحدث مع مساعد خدمتك الذكي الفوري"
+              >
+                <Sparkles className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform" />
+                <span className="hidden xl:inline">{lang === 'ar' ? 'مساعد خدمتك الذكي' : 'Smart AI'}</span>
+              </button>
+            )}
+
             {/* Search Button */}
             <button
               id="header-search-btn"

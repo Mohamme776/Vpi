@@ -95,6 +95,14 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavigate, onOpenDealerMo
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('smart-service')}
+                  className="text-lime-400 font-bold hover:underline flex items-center gap-1"
+                >
+                  <span>{lang === 'ar' ? 'منظومة خدمتك الذكي' : 'Smart Service Hub'}</span>
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('products')}
                   className="hover:text-lime-400 transition-colors"
                 >

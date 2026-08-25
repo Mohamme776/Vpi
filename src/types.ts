@@ -104,3 +104,43 @@ export interface SearchFilterState {
   category: string;
   keyword: string;
 }
+
+export interface SmartQuoteItem {
+  partId: string;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+}
+
+export interface SmartOrderTrackResult {
+  orderId: string;
+  clientName: string;
+  city: string;
+  status: 'received' | 'manufacturing' | 'quality_check' | 'shipped' | 'delivered';
+  statusAr: string;
+  statusEn: string;
+  orderDate: string;
+  estimatedDelivery: string;
+  carrier: string;
+  trackingNumber: string;
+  itemsCount: number;
+  totalSAR: number;
+  timeline: {
+    titleAr: string;
+    titleEn: string;
+    date: string;
+    done: boolean;
+  }[];
+}
+
+export interface AssistantMessage {
+  id: string;
+  sender: 'assistant' | 'user';
+  text: string;
+  timestamp: string;
+  actionPayload?: {
+    type: 'part' | 'quote' | 'dealer' | 'location' | 'contact';
+    data?: any;
+  };
+}
+
